@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kenneth Bayonito - Home & Contact</title>
+
+<!-- Narnia Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+/* ================= GENERAL STYLES ================= */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Cinzel', serif;
+    background: #0b0b0b;
+    color: #9aff9a; /* light green */
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* FULLSCREEN BACKGROUND */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+/* HEADER */
+header {
+    background: rgba(0,0,0,0.6);
+    padding: 40px;
+    text-align: center;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2rem;
+    color: #00ff88; /* glowing forest green */
+    text-shadow: 0 0 10px #00ff88, 0 0 20px #00cc66;
+}
+
+/* CONTENT CONTAINER */
+.container {
+    max-width: 900px;
+    margin: 120px auto 40px auto;
+    padding: 20px;
+    background: rgba(20,20,20,0.85);
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.7);
+    position: relative;
+}
+
+/* SWITCHABLE PHOTO */
+.member-photo {
+    display: block;
+    width: 60%;
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #00cc55;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.member-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px #00ff99;
+}
+
+/* HEADINGS */
+h2 {
+    font-family: 'Cinzel Decorative', serif;
+    color: #00ff88;
+    margin-bottom: 15px;
+    text-shadow: 0 0 8px #00ff88, 0 0 16px #00cc66;
+}
+
+/* PARAGRAPHS */
+p {
+    margin-bottom: 15px;
+    text-align: justify;
+    color: #6aff6a; /* darker green (unglow state) */
+    transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+/* GLOW ALL PARAGRAPHS WHEN ANY IS HOVERED */
+.container:hover p {
+    color: #b4ffb4;
+    text-shadow:
+        0 0 8px #00ff88,
+        0 0 15px #00ff88,
+        0 0 25px #00cc66;
+}
+
+/* BUTTONS */
+.back-btn, .contact-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background: #00cc66;
+    color: #000;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    margin: 10px 10px 20px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* BUTTON HOVER */
+.back-btn:hover, .contact-btn:hover {
+    background: #00ff88;
+    transform: scale(1.05);
+    box-shadow:
+        0 0 10px #00ff88,
+        0 0 20px #00ff88,
+        0 0 30px #00cc66;
+}
+
+/* INSTRUCTION POPUP */
+#instruction-popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: #00ff88;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    text-shadow: 0 0 10px #00ff88;
+    box-shadow: 0 0 12px rgba(0,0,0,0.7);
+    z-index: 9999;
+    pointer-events: none;
+}
+
+/* MOBILE RESPONSIVE */
+@media only screen and (max-width: 768px) {
+    .container {
+        margin: 80px 15px 30px 15px;
+        padding: 15px;
+    }
+
+    header {
+        font-size: 1.5rem;
+        padding: 15px;
+    }
+
+    .member-photo {
+        width: 80%;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Background Video -->
+<video autoplay muted loop id="bg-video">
+    <source src="../videos/background.mp4" type="video/mp4">
+</video>
+
+<header>Kenneth Bayonito - Home & Contact</header>
+
+<div class="container">
+
+    <!-- SWITCHABLE PHOTO -->
+    <img id="switchPhoto" src="../images/member4.jpg" alt="Kenneth Bayonito" class="member-photo">
+
+    <!-- NAV BUTTONS -->
+    <a href="../index.html" class="back-btn">← Back to Portfolio</a>
+    <a href="mailto:kebayonito@my.cspc.edu.ph" class="contact-btn">Email</a>
+    <a href="https://www.facebook.com/share/1Bfzczrtmo/" target="_blank" class="contact-btn">Facebook</a>
+
+    <h2>Home Address</h2>
+
+    <p><strong>Barangay:</strong> Binobong</p>
+    <p><strong>Municipality/City:</strong> Pili</p>
+    <p><strong>Province:</strong> Camarines Sur</p>
+    <p><strong>Contact Number:</strong> 09938700232</p>
+
+    <h2>Daily Communication</h2>
+    <p>Rinconada | Bikol | Tagalog</p>
+
+</div>
+
+<!-- ALWAYS VISIBLE INSTRUCTION POPUP -->
+<div id="instruction-popup">Click the Hero's image to revert back to Human</div>
+
+<!-- PHOTO SWITCH SCRIPT -->
+<script>
+const photos = [
+    "../images/member4.jpg",
+    "../images/member4_alt.jpg"
+];
+
+let index = 0;
+
+document.getElementById("switchPhoto").addEventListener("click", () => {
+    index = (index + 1) % photos.length;
+    document.getElementById("switchPhoto").src = photos[index];
+});
+
+// POPUP SHOW/HIDE LOOP
+const popup = document.getElementById("instruction-popup");
+
+setInterval(() => {
+    popup.style.display = "none";
+    setTimeout(() => { popup.style.display = "block"; }, 5005);
+}, 10000);
+</script>
+
+</body>
+</html>

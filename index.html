@@ -71,19 +71,28 @@
     font-family: 'Cinzel', serif;
     border: none;
     border-radius: 6px;
-    background: #ffd700;
-    color: #000;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
     margin-right: 6px;
     margin-top: 10px;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+    color: #000;
 }
 
+/* Button hover glow */
 .info-btn:hover {
-    background: #e6c200;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff;
 }
+
+/* Theme-colored buttons */
+.narnia-gold .info-btn { background: #f4d27a; }
+.narnia-skyblue .info-btn { background: #6db6ff; }
+.narnia-silver .info-btn { background: #d4d4d4; }
+.narnia-green .info-btn { background: #3c7a47; color: #fff; }
+.narnia-ice .info-btn { background: #a0e0ff; }
+.narnia-purple .info-btn { background: #a362c3; color: #fff; }
 
 /* Container for buttons */
 .member-buttons {
@@ -108,69 +117,51 @@
     pointer-events: none;
 }
 
+/* ================= MUSIC BUTTON ================= */
+#music-button {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: gold;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 10000;
+}
+
 /* ================= MOBILE & TABLET ADAPTABILITY ================= */
 @media only screen and (max-width: 768px) {
-
-    .container {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        padding: 10px;
-    }
-
-    .member-card {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        margin-bottom: 0;
-    }
-
-    .member-header {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .member-card img {
-        width: 100%;
-        height: auto;
-        max-width: 100%;
-        border-radius: 10px;
-    }
-
-    .member-header div {
-        padding: 10px 0;
-    }
-
-    .narnia-title {
-        font-size: 0.9rem;
-    }
-
-    .member-card div p {
-        font-size: 0.9rem;
-    }
-
-    #instruction-popup {
-        bottom: 10px;
-        font-size: 0.8rem;
-        padding: 8px 12px;
-    }
-
-    body, html {
-        width: 100%;
-        overflow-x: hidden;
-    }
+    .container { display: flex; flex-direction: column; gap: 20px; padding: 10px; }
+    .member-card { display: flex; flex-direction: column; width: 100%; margin-bottom: 0; }
+    .member-header { display: flex; flex-direction: column; gap: 10px; }
+    .member-card img { width: 100%; height: auto; max-width: 100%; border-radius: 10px; }
+    .member-header div { padding: 10px 0; }
+    .narnia-title { font-size: 0.9rem; }
+    .member-card div p { font-size: 0.9rem; }
+    #instruction-popup { bottom: 10px; font-size: 0.8rem; padding: 8px 12px; }
+    #music-button { top: 10px; font-size: 0.8rem; padding: 8px 12px; }
+    body, html { width: 100%; overflow-x: hidden; }
 }
 </style>
 </head>
 <body>
+
+<!-- ================= MUSIC BUTTON ================= -->
+<button id="music-button">Play / Pause Music</button>
+<audio id="bg-audio" autoplay loop>
+    <source src="audio/background.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
 <!-- FULLSCREEN VIDEO BACKGROUND -->
 <video autoplay muted loop id="bg-video">
     <source src="videos/background.mp4" type="video/mp4">
 </video>
 
-<!-- HEADER WITH MOVING CLOUDS -->
 <header>
     <div class="clouds">
         <div class="cloud cloud1"></div>
@@ -182,12 +173,6 @@
 
 <div class="container">
 
-    <!-- RECORD OF HEROES -->
-    <div class="record-of-heroes">
-        <h1>Record of Heroes</h1>
-        <p>The brave warriors of Narnia and their achievements.</p>
-    </div>
-
     <!-- MEMBER 1 – GOLD -->
     <div class="member-card narnia-gold">
         <div class="member-header">
@@ -196,22 +181,20 @@
                 <h2>John Alejandro Barba</h2>
                 <p class="narnia-title">The Lionheart Monarch</p>
                 <p><strong>Student Goal:</strong><br>
-                    Graduate with pride and honor for my family.<br>
-                    Apply my learning to achieve the dreams I aspire to.<br>
-                    Be proud to be equipped with the knowledge and skills gained from ECE.
+                   Graduate with pride and honor for my family.<br>
+                   Apply my learning to achieve the dreams I aspire to.<br>
+                   Be proud to be equipped with the knowledge and skills gained from ECE.
                 </p>
                 <p><strong>Philosophy in Education:</strong><br>
-                    "Through steadfast effort and tireless pursuit, hard work unfolds its rewards, shaping dreams into reality."
+                   "Through steadfast effort and tireless pursuit, hard work unfolds its rewards, shaping dreams into reality."
                 </p>
             </div>
         </div>
-        <a class="pdf-link" href="reflections/member1.pdf" target="_blank">Life Reflection</a>
-        
-        <!-- BUTTONS -->
         <div class="member-buttons">
-            <a href="talent/member1.html" class="info-btn" target="_blank">Talent / Hobbies</a>
-            <a href="professional/member1.html" class="info-btn" target="_blank">Professional Development</a>
-            <a href="home_contact/member1.html" class="info-btn" target="_blank">Home & Contact Details</a>
+            <a href="reflections/member1.pdf" target="_blank" class="info-btn">Life Reflection</a>
+            <a href="talent/member1.html" class="info-btn">Talent / Hobbies</a>
+            <a href="professional/member1.html" class="info-btn">Professional Development</a>
+            <a href="home_contact/member1.html" class="info-btn">Home & Contact Details</a>
         </div>
     </div>
 
@@ -222,16 +205,15 @@
             <div>
                 <h2>Gerryca Almin</h2>
                 <p class="narnia-title">The Skyborne Guardian</p>
-                <p><strong>Student Goal:</strong> (input here)</p>
-                <p><strong>Philosophy in Education:</strong> (input here)</p>
+                <p><strong>Student Goal:</strong> "Be kind to yourself while pursuing your dreams.”</p>
+                <p><strong>Philosophy in Education:</strong> "Education is the key to success. Remember, even if you fell yesterday, you will rise tomorrow.”</p>
             </div>
         </div>
-        <a class="pdf-link" href="reflections/member2.pdf" target="_blank">Life Reflection</a>
-        
         <div class="member-buttons">
-            <a href="talent/member2.html" class="info-btn" target="_blank">Talent / Hobbies</a>
-            <a href="professional/member2.html" class="info-btn" target="_blank">Professional Development</a>
-            <a href="home_contact/member2.html" class="info-btn" target="_blank">Home & Contact Details</a>
+            <a href="reflections/member2.pdf" target="_blank" class="info-btn">Life Reflection</a>
+            <a href="talent/member2.html" class="info-btn">Talent / Hobbies</a>
+            <a href="professional/member2.html" class="info-btn">Professional Development</a>
+            <a href="home_contact/member2.html" class="info-btn">Home & Contact Details</a>
         </div>
     </div>
 
@@ -242,36 +224,43 @@
             <div>
                 <h2>Bernard Martirez</h2>
                 <p class="narnia-title">The Silver Sentinel</p>
-                <p><strong>Student Goal:</strong> (input here)</p>
-                <p><strong>Philosophy in Education:</strong> (input here)</p>
+                <p><strong>Student Goal:</strong><br>
+                   To open the door to knowledge and venture further up and further in, growing from students 
+                   into leaders of character, courage, and wisdom.
+                </p>
+                <p><strong>Philosophy in Education:</strong><br>
+                   Education is about training the mind to be a fortress of reason.
+                </p>
             </div>
         </div>
-        <a class="pdf-link" href="reflections/member3.pdf" target="_blank">Life Reflection</a>
-        
         <div class="member-buttons">
-            <a href="talent/member3.html" class="info-btn" target="_blank">Talent / Hobbies</a>
-            <a href="professional/member3.html" class="info-btn" target="_blank">Professional Development</a>
-            <a href="home_contact/member3.html" class="info-btn" target="_blank">Home & Contact Details</a>
+            <a href="reflections/member3.pdf" target="_blank" class="info-btn">Life Reflection</a>
+            <a href="talent/member3.html" class="info-btn">Talent / Hobbies</a>
+            <a href="professional/member3.html" class="info-btn">Professional Development</a>
+            <a href="home_contact/member3.html" class="info-btn">Home & Contact Details</a>
         </div>
     </div>
 
-    <!-- MEMBER 4 – FOREST GREEN -->
+    <!-- MEMBER 4 – GREEN -->
     <div class="member-card narnia-green">
         <div class="member-header">
             <img src="images/member4.jpg" data-alt="images/member4_alt.jpg" alt="Kenneth Bayonito" class="toggle-photo">
             <div>
                 <h2>Kenneth Bayonito</h2>
                 <p class="narnia-title">The Woodland Warden</p>
-                <p><strong>Student Goal:</strong> (input here)</p>
-                <p><strong>Philosophy in Education:</strong> (input here)</p>
+                <p><strong>Student Goal:</strong><br>
+                   8 hours of sleep
+                </p>
+                <p><strong>Philosophy in Education:</strong><br>
+                   "Hard work is not a magic spell for success"
+                </p>
             </div>
         </div>
-        <a class="pdf-link" href="reflections/member4.pdf" target="_blank">Life Reflection</a>
-        
         <div class="member-buttons">
-            <a href="talent/member4.html" class="info-btn" target="_blank">Talent / Hobbies</a>
-            <a href="professional/member4.html" class="info-btn" target="_blank">Professional Development</a>
-            <a href="home_contact/member4.html" class="info-btn" target="_blank">Home & Contact Details</a>
+            <a href="reflections/member4.pdf" target="_blank" class="info-btn">Life Reflection</a>
+            <a href="talent/member4.html" class="info-btn">Talent / Hobbies</a>
+            <a href="professional/member4.html" class="info-btn">Professional Development</a>
+            <a href="home_contact/member4.html" class="info-btn">Home & Contact Details</a>
         </div>
     </div>
 
@@ -282,36 +271,42 @@
             <div>
                 <h2>Angeline Catangui</h2>
                 <p class="narnia-title">The Frostbreaker</p>
-                <p><strong>Student Goal:</strong> (input here)</p>
-                <p><strong>Philosophy in Education:</strong> (input here)</p>
+                <p><strong>Student Goal:</strong><br>
+                   To be more confident and explore new opportunities
+                </p>
+                <p><strong>Philosophy in Education:</strong><br>
+                   I believe learning happens when we step out of our comfort zone.
+                </p>
             </div>
         </div>
-        <a class="pdf-link" href="reflections/member5.pdf" target="_blank">Life Reflection</a>
-        
         <div class="member-buttons">
-            <a href="talent/member5.html" class="info-btn" target="_blank">Talent / Hobbies</a>
-            <a href="professional/member5.html" class="info-btn" target="_blank">Professional Development</a>
-            <a href="home_contact/member5.html" class="info-btn" target="_blank">Home & Contact Details</a>
+            <a href="reflections/member5.pdf" target="_blank" class="info-btn">Life Reflection</a>
+            <a href="talent/member5.html" class="info-btn">Talent / Hobbies</a>
+            <a href="professional/member5.html" class="info-btn">Professional Development</a>
+            <a href="home_contact/member5.html" class="info-btn">Home & Contact Details</a>
         </div>
     </div>
 
-    <!-- MEMBER 6 – PURPLE MAGIC -->
+    <!-- MEMBER 6 – PURPLE -->
     <div class="member-card narnia-purple">
         <div class="member-header">
             <img src="images/member6.jpg" data-alt="images/member6_alt.jpg" alt="Marielle Kingking" class="toggle-photo">
             <div>
                 <h2>Marielle Kingking</h2>
                 <p class="narnia-title">The Mystic Enchanter</p>
-                <p><strong>Student Goal:</strong> (input here)</p>
-                <p><strong>Philosophy in Education:</strong> (input here)</p>
+                <p><strong>Student Goal:</strong><br>
+                   Develop technical and personal skills while preparing for the future.
+                </p>
+                <p><strong>Philosophy in Education:</strong><br>
+                   Education is the key to personal growth and mastery of skills.
+                </p>
             </div>
         </div>
-        <a class="pdf-link" href="reflections/member6.pdf" target="_blank">Life Reflection</a>
-        
         <div class="member-buttons">
-            <a href="talent/member6.html" class="info-btn" target="_blank">Talent / Hobbies</a>
-            <a href="professional/member6.html" class="info-btn" target="_blank">Professional Development</a>
-            <a href="home_contact/member6.html" class="info-btn" target="_blank">Home & Contact Details</a>
+            <a href="reflections/member6.pdf" target="_blank" class="info-btn">Life Reflection</a>
+            <a href="talent/member6.html" class="info-btn">Talent / Hobbies</a>
+            <a href="professional/member6.html" class="info-btn">Professional Development</a>
+            <a href="home_contact/member6.html" class="info-btn">Home & Contact Details</a>
         </div>
     </div>
 
@@ -320,8 +315,8 @@
 <!-- ALWAYS VISIBLE INSTRUCTION POPUP -->
 <div id="instruction-popup">Click the Hero's image to revert back to Human</div>
 
-<!-- SCRIPT: Toggle member photos and popup behavior -->
 <script>
+// Toggle member photos
 document.querySelectorAll('.toggle-photo').forEach(img => {
     img.addEventListener('click', () => {
         const current = img.getAttribute('src');
@@ -331,18 +326,25 @@ document.querySelectorAll('.toggle-photo').forEach(img => {
     });
 });
 
-// ================= POPUP HIDE/SHOW EVERY 5 SECONDS =================
+// Popup hide/show
 const popup = document.getElementById("instruction-popup");
-
 setInterval(() => {
-    // Hide popup
     popup.style.display = "none";
+    setTimeout(() => { popup.style.display = "block"; }, 5000);
+}, 10000);
 
-    // Show it again after 5 seconds
-    setTimeout(() => {
-        popup.style.display = "block";
-    }, 5000);
-}, 10000); // repeats every 10 seconds (5s hidden + 5s visible)
+// Music button
+const music = document.getElementById("bg-audio");
+const musicBtn = document.getElementById("music-button");
+musicBtn.addEventListener('click', () => {
+    if (music.paused) music.play();
+    else music.pause();
+});
+setInterval(() => {
+    musicBtn.style.display = "none";
+    setTimeout(() => { musicBtn.style.display = "block"; }, 5000);
+}, 10000);
+music.play().catch(e => console.log("Autoplay prevented"));
 </script>
 
 </body>

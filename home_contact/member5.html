@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angeline Catangui - Home & Contact</title>
+
+<!-- Narnia Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Cinzel', serif;
+    background: #0b0b0b;
+    color: #e6f7ff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* FULLSCREEN BACKGROUND VIDEO */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+/* HEADER */
+header {
+    background: rgba(0,0,0,0.6);
+    padding: 40px;
+    text-align: center;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2rem;
+    color: #88cfff;
+    text-shadow: 0 0 10px #88cfff, 0 0 20px #b3f0ff, 0 0 30px #e0ffff;
+    animation: headerGlow 2s linear infinite alternate;
+}
+
+/* HEADER GLOW ANIMATION */
+@keyframes headerGlow {
+    0% { text-shadow: 0 0 5px #88cfff, 0 0 10px #b3f0ff, 0 0 15px #e0ffff; }
+    50% { text-shadow: 0 0 15px #88cfff, 0 0 30px #b3f0ff, 0 0 45px #e0ffff; }
+    100% { text-shadow: 0 0 5px #88cfff, 0 0 10px #b3f0ff, 0 0 15px #e0ffff; }
+}
+
+/* CONTENT CONTAINER */
+.container {
+    max-width: 900px;
+    margin: 120px auto 40px auto;
+    padding: 20px;
+    background: rgba(20,20,20,0.85);
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.7);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+/* ALWAYS GLOWING PHOTO */
+.member-photo {
+    display: block;
+    width: 60%;
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #88cfff;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.member-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px #b3f0ff;
+}
+
+/* NAV BUTTONS */
+.back-btn, .contact-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background: #88cfff;
+    color: #000;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    margin: 10px 10px 20px 0;
+    transition: all 0.3s ease-in-out;
+}
+.back-btn:hover, .contact-btn:hover {
+    background: #b3f0ff;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #88cfff, 0 0 20px #b3f0ff, 0 0 30px #e0ffff;
+}
+
+/* HEADINGS AND PARAGRAPHS */
+h2, p {
+    transition: text-shadow 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+/* ANIMATE GLOW ON HOVER CONTAINER */
+.container:hover h2, 
+.container:hover p {
+    color: #b3f0ff;
+    text-shadow:
+        0 0 5px #88cfff,
+        0 0 10px #88cfff,
+        0 0 15px #b3f0ff,
+        0 0 20px #e0ffff,
+        0 0 25px #88cfff;
+}
+
+/* ALWAYS VISIBLE INSTRUCTION POPUP */
+#instruction-popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: #88cfff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    text-shadow: 1px 1px 3px #88cfff;
+    box-shadow: 0 0 12px #88cfff;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+/* MOBILE RESPONSIVE */
+@media only screen and (max-width: 768px) {
+    .container { margin: 80px 15px 30px 15px; padding: 15px; }
+    header { font-size: 1.5rem; padding: 15px; }
+    .member-photo { width: 80%; }
+}
+</style>
+</head>
+<body>
+
+<!-- Background Video -->
+<video autoplay muted loop id="bg-video">
+    <source src="../videos/background.mp4" type="video/mp4">
+</video>
+
+<header>Angeline Catangui - Home & Contact</header>
+
+<div class="container">
+
+    <!-- PHOTO -->
+    <img id="switchPhoto" src="../images/member5.jpg" alt="Angeline Catangui" class="member-photo">
+
+    <!-- NAV BUTTONS -->
+    <a href="../index.html" class="back-btn">← Back to Portfolio</a>
+    <a href="mailto:ancatangui@my.cspc.edu.ph" class="contact-btn">Email</a>
+    <a href="https://www.facebook.com/share/1FZ4rZLVYw/" target="_blank" class="contact-btn">Facebook</a>
+
+    <h2>Home Address</h2>
+    <p><strong>Barangay:</strong> San Miguel</p>
+    <p><strong>Municipality/City:</strong> Iriga City</p>
+    <p><strong>Province:</strong> Camarines Sur</p>
+    <p><strong>Contact Number:</strong> 09278715124</p>
+
+    <h2>Daily Communication</h2>
+    <p>Tagalog | English</p>
+
+</div>
+
+<!-- ALWAYS VISIBLE INSTRUCTION POPUP -->
+<div id="instruction-popup">Click the Hero's image to revert back to Human</div>
+
+<script>
+// PHOTO TOGGLE
+const photos = ["../images/member5.jpg", "../images/member5_alt.jpg"];
+let index = 0;
+document.getElementById("switchPhoto").addEventListener("click", () => {
+    index = (index + 1) % photos.length;
+    document.getElementById("switchPhoto").src = photos[index];
+});
+
+// POPUP HIDE/SHOW EVERY 5 SECONDS
+const popup = document.getElementById("instruction-popup");
+setInterval(() => {
+    popup.style.display = "none";
+    setTimeout(() => { popup.style.display = "block"; }, 5000);
+}, 10000);
+</script>
+
+</body>
+</html>

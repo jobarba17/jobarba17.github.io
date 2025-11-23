@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marielle Kingking - Home & Contact</title>
+
+<!-- Narnia Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Cinzel', serif;
+    background: #0b0b0b;
+    color: #d1b3ff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* FULLSCREEN BACKGROUND VIDEO */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+/* HEADER ALWAYS GLOWING */
+header {
+    background: rgba(0,0,0,0.6);
+    padding: 40px;
+    text-align: center;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2rem;
+    color: #b362ff;
+    text-shadow: 0 0 10px #b362ff, 0 0 20px #c99cff, 0 0 30px #e6ccff;
+    animation: headerGlow 2s linear infinite alternate;
+}
+
+@keyframes headerGlow {
+    0% { text-shadow: 0 0 5px #b362ff, 0 0 10px #c99cff, 0 0 15px #e6ccff; }
+    50% { text-shadow: 0 0 15px #b362ff, 0 0 30px #c99cff, 0 0 45px #e6ccff; }
+    100% { text-shadow: 0 0 5px #b362ff, 0 0 10px #c99cff, 0 0 15px #e6ccff; }
+}
+
+/* CONTENT CONTAINER */
+.container {
+    max-width: 900px;
+    margin: 120px auto 40px auto;
+    padding: 20px;
+    background: rgba(20,20,20,0.85);
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.7);
+    position: relative;
+}
+
+/* PHOTO */
+.member-photo {
+    display: block;
+    width: 60%;
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #b362ff;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.member-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px #c99cff;
+}
+
+/* NAV BUTTONS */
+.back-btn, .contact-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background: #b362ff;
+    color: #000;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    margin: 10px 10px 20px 0;
+    transition: all 0.3s ease-in-out;
+}
+.back-btn:hover, .contact-btn:hover {
+    background: #c99cff;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #b362ff, 0 0 20px #c99cff, 0 0 30px #e6ccff;
+}
+
+/* HEADINGS AND PARAGRAPHS ANIMATE GLOW */
+h2, p {
+    animation: textGlow 3s ease-in-out infinite alternate;
+}
+
+ul li {
+    animation: textGlow 3s ease-in-out infinite alternate;
+}
+
+/* TEXT GLOW ANIMATION */
+@keyframes textGlow {
+    0% { text-shadow: 0 0 5px #b362ff, 0 0 10px #c99cff; }
+    50% { text-shadow: 0 0 10px #b362ff, 0 0 20px #c99cff, 0 0 30px #e6ccff; }
+    100% { text-shadow: 0 0 5px #b362ff, 0 0 10px #c99cff; }
+}
+
+/* INSTRUCTION POPUP */
+#instruction-popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: #b362ff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    text-shadow: 1px 1px 3px #b362ff;
+    box-shadow: 0 0 12px #b362ff;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+/* MOBILE RESPONSIVE */
+@media only screen and (max-width: 768px) {
+    .container { margin: 80px 15px 30px 15px; padding: 15px; }
+    header { font-size: 1.5rem; padding: 15px; }
+    .member-photo { width: 80%; }
+}
+</style>
+</head>
+<body>
+
+<!-- Background Video -->
+<video autoplay muted loop id="bg-video">
+    <source src="../videos/background.mp4" type="video/mp4">
+</video>
+
+<header>Marielle Kingking - Home & Contact</header>
+
+<div class="container">
+
+    <!-- PHOTO -->
+    <img id="switchPhoto" src="../images/member6.jpg" alt="Marielle Kingking" class="member-photo">
+
+    <!-- NAV BUTTONS -->
+    <a href="../index.html" class="back-btn">← Back to Portfolio</a>
+    <a href="mailto:kimarielle@my.cspc.edu.ph" class="contact-btn">Email</a>
+    <a href="https://www.facebook.com/marielle.kingking" target="_blank" class="contact-btn">Facebook</a>
+
+    <h2>Home Address</h2>
+    <p><strong>Barangay:</strong> San Antonio</p>
+    <p><strong>Municipality/City:</strong> Ocampo</p>
+    <p><strong>Province:</strong> Camarines Sur</p>
+    <p><strong>Contact Number:</strong> 09109026399</p>
+
+    <h2>Daily Communication</h2>
+    <p>Rinconada | Tagalog | English</p>
+
+</div>
+
+<div id="instruction-popup">Click the Hero's image to revert back to Human</div>
+
+<script>
+// PHOTO TOGGLE
+const photos = ["../images/member6.jpg", "../images/member6_alt.jpg"];
+let index = 0;
+document.getElementById("switchPhoto").addEventListener("click", () => {
+    index = (index + 1) % photos.length;
+    document.getElementById("switchPhoto").src = photos[index];
+});
+
+// POPUP HIDE/SHOW EVERY 5 SECONDS
+const popup = document.getElementById("instruction-popup");
+setInterval(() => {
+    popup.style.display = "none";
+    setTimeout(() => { popup.style.display = "block"; }, 5000);
+}, 10000);
+</script>
+
+</body>
+</html>
