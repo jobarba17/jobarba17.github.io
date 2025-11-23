@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Narnia E-Portfolio</title>
+
+<!-- MAGICAL NARNIA FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+<style>
+/* ================= NARNIA HERO TITLE ================= */
+.narnia-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1rem;
+    margin: 0 0 8px 0;
+    letter-spacing: 1.5px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+}
+
+/* Hover glow effect for cards */
+.member-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.member-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 35px rgba(0,0,0,0.9);
+}
+
+.member-card::before {
+    content:"";
+    position:absolute; top:-3px; left:-3px; right:-3px; bottom:-3px;
+    border-radius:20px;
+    z-index:-1;
+    background-size: 300% 300%;
+    opacity: 0;
+    transition: opacity 0.35s ease-in-out;
+}
+
+/* Glow backgrounds per theme on hover */
+.narnia-gold:hover::before { opacity:1; animation: cardGlow 6s linear infinite; background: linear-gradient(120deg, #f4d27a, #d4a437, #b57a1f, #f4d27a);}
+.narnia-skyblue:hover::before { opacity:1; animation: cardGlow 6s linear infinite; background: linear-gradient(135deg, #2f5f8f, #6db6ff, #4a90e2, #2f5f8f);}
+.narnia-silver:hover::before { opacity:1; animation: cardGlow 6s linear infinite; background: linear-gradient(135deg, #6a6a6a, #d4d4d4, #b0b0b0, #6a6a6a);}
+.narnia-green:hover::before { opacity:1; animation: cardGlow 6s linear infinite; background: linear-gradient(135deg, #1e4d2b, #3c7a47, #2b5f36, #1e4d2b);}
+.narnia-ice:hover::before { opacity:1; animation: cardGlow 6s linear infinite; background: linear-gradient(135deg, #88cfff, #e6f7ff, #a0e0ff, #88cfff);}
+.narnia-purple:hover::before { opacity:1; animation: cardGlow 6s linear infinite; background: linear-gradient(135deg, #4b1f57, #a362c3, #7a3fa0, #4b1f57);}
+
+@keyframes cardGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Cursor pointer for toggle photos */
+.toggle-photo {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.toggle-photo:hover {
+    transform: scale(1.05);
+}
+
+/* ================= ALWAYS VISIBLE POPUP INSTRUCTIONS ================= */
+#instruction-popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: #ffd700;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    box-shadow: 0 0 12px rgba(0,0,0,0.7);
+    z-index: 9999;
+    pointer-events: none;
+}
+</style>
+</head>
+<body>
+
+<!-- FULLSCREEN VIDEO BACKGROUND -->
+<video autoplay muted loop id="bg-video">
+    <source src="videos/background.mp4" type="video/mp4">
+</video>
+
+<!-- HEADER WITH MOVING CLOUDS -->
+<header>
+    <div class="clouds">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+    </div>
+    Welcome to Narnia!
+</header>
+
+<div class="container">
+
+    <!-- RECORD OF HEROES -->
+    <div class="record-of-heroes">
+        <h1>Record of Heroes</h1>
+        <p>The brave warriors of Narnia and their achievements.</p>
+    </div>
+
+    <!-- MEMBER 1 – GOLD -->
+    <div class="member-card narnia-gold">
+        <div class="member-header">
+            <img src="images/member1.jpg" data-alt="images/member1_alt.jpg" alt="John Alejandro Barba" class="toggle-photo">
+            <div>
+                <h2>John Alejandro Barba</h2>
+                <p class="narnia-title">The Lionheart Monarch</p>
+                <p><strong>Student Goal:</strong><br>
+                    Graduate with pride and honor for my family.<br>
+                    Apply my learning to achieve the dreams I aspire to.<br>
+                    Be proud to be equipped with the knowledge and skills gained from ECE.
+                </p>
+                <p><strong>Philosophy in Education:</strong><br>
+                    "Through steadfast effort and tireless pursuit, hard work unfolds its rewards, shaping dreams into reality."
+                </p>
+            </div>
+        </div>
+        <a class="pdf-link" href="reflections/member1.pdf" target="_blank">Life Reflection</a>
+    </div>
+
+    <!-- MEMBER 2 – SKY BLUE -->
+    <div class="member-card narnia-skyblue">
+        <div class="member-header">
+            <img src="images/member2.jpg" data-alt="images/member2_alt.jpg" alt="Gerryca Almin" class="toggle-photo">
+            <div>
+                <h2>Gerryca Almin</h2>
+                <p class="narnia-title">The Skyborne Guardian</p>
+                <p><strong>Student Goal:</strong> (input here)</p>
+                <p><strong>Philosophy in Education:</strong> (input here)</p>
+            </div>
+        </div>
+        <a class="pdf-link" href="reflections/member2.pdf" target="_blank">Life Reflection</a>
+    </div>
+
+    <!-- MEMBER 3 – SILVER -->
+    <div class="member-card narnia-silver">
+        <div class="member-header">
+            <img src="images/member3.jpg" data-alt="images/member3_alt.jpg" alt="Bernard Martirez" class="toggle-photo">
+            <div>
+                <h2>Bernard Martirez</h2>
+                <p class="narnia-title">The Silver Sentinel</p>
+                <p><strong>Student Goal:</strong> (input here)</p>
+                <p><strong>Philosophy in Education:</strong> (input here)</p>
+            </div>
+        </div>
+        <a class="pdf-link" href="reflections/member3.pdf" target="_blank">Life Reflection</a>
+    </div>
+
+    <!-- MEMBER 4 – FOREST GREEN -->
+    <div class="member-card narnia-green">
+        <div class="member-header">
+            <img src="images/member4.jpg" data-alt="images/member4_alt.jpg" alt="Kenneth Bayonito" class="toggle-photo">
+            <div>
+                <h2>Kenneth Bayonito</h2>
+                <p class="narnia-title">The Woodland Warden</p>
+                <p><strong>Student Goal:</strong> (input here)</p>
+                <p><strong>Philosophy in Education:</strong> (input here)</p>
+            </div>
+        </div>
+        <a class="pdf-link" href="reflections/member4.pdf" target="_blank">Life Reflection</a>
+    </div>
+
+    <!-- MEMBER 5 – ICE BLUE -->
+    <div class="member-card narnia-ice">
+        <div class="member-header">
+            <img src="images/member5.jpg" data-alt="images/member5_alt.jpg" alt="Angeline Catangui" class="toggle-photo">
+            <div>
+                <h2>Angeline Catangui</h2>
+                <p class="narnia-title">The Frostbreaker</p>
+                <p><strong>Student Goal:</strong> (input here)</p>
+                <p><strong>Philosophy in Education:</strong> (input here)</p>
+            </div>
+        </div>
+        <a class="pdf-link" href="reflections/member5.pdf" target="_blank">Life Reflection</a>
+    </div>
+
+    <!-- MEMBER 6 – PURPLE MAGIC -->
+    <div class="member-card narnia-purple">
+        <div class="member-header">
+            <img src="images/member6.jpg" data-alt="images/member6_alt.jpg" alt="Marielle Kingking" class="toggle-photo">
+            <div>
+                <h2>Marielle Kingking</h2>
+                <p class="narnia-title">The Mystic Enchanter</p>
+                <p><strong>Student Goal:</strong> (input here)</p>
+                <p><strong>Philosophy in Education:</strong> (input here)</p>
+            </div>
+        </div>
+        <a class="pdf-link" href="reflections/member6.pdf" target="_blank">Life Reflection</a>
+    </div>
+
+</div>
+
+<!-- ALWAYS VISIBLE INSTRUCTION POPUP -->
+<div id="instruction-popup">Click the member image to switch photos</div>
+
+<!-- SCRIPT: Toggle member photos -->
+<script>
+document.querySelectorAll('.toggle-photo').forEach(img => {
+    img.addEventListener('click', () => {
+        const current = img.getAttribute('src');
+        const alt = img.getAttribute('data-alt');
+        img.setAttribute('src', alt);
+        img.setAttribute('data-alt', current);
+    });
+});
+</script>
+
+</body>
+</html>
