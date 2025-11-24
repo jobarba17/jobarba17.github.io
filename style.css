@@ -291,3 +291,69 @@ h2 {
 .toggle-photo.fade-out {
     opacity: 0;
 }
+
+.hero-board p {
+    color: gold;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+}
+/* ================= HERO BOARD RESPONSIVE ================= */
+.hero-board {
+    width: 90%;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 15px;
+}
+
+.hero-board h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+}
+
+.hero-board .hero-description {
+    color: gold;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    text-align: center;
+}
+
+/* Mobile adaptation */
+@media only screen and (max-width: 768px) {
+    .hero-board {
+        width: 95%;
+        padding: 0 10px;
+        margin: 20px auto;
+    }
+
+    .hero-board h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    .hero-board .hero-description {
+        font-size: 1rem;
+        line-height: 1.4;
+        padding: 0 5px;
+    }
+}
+.hero-board .hero-description {
+    color: gold;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    text-align: center;
+}
+
+/* Mobile responsiveness */
+@media only screen and (max-width: 768px) {
+    .hero-board .hero-description {
+        font-size: 1rem;
+        line-height: 1.4;
+        padding: 0 10px;
+    }
+}
+
+
+
