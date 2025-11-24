@@ -323,6 +323,10 @@ h2 {
 
     .hero-board .hero-description {
         font-size: 1.1rem;       
-        max-width: 100%;
+        max-width: 90%;          /* slightly less than container width */
+        width: auto;             
+        margin: 0 auto;          /* center it */
+        text-align: center;      
     }
 }
+
