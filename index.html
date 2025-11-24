@@ -135,10 +135,30 @@
 
 /* ================= MOBILE & TABLET ADAPTABILITY ================= */
 @media only screen and (max-width: 768px) {
-    .container { display: flex; flex-direction: column; gap: 20px; padding: 10px; }
-    .member-card { display: flex; flex-direction: column; width: 100%; margin-bottom: 0; }
-    .member-header { display: flex; flex-direction: column; gap: 10px; }
-    .member-card img { width: 100%; height: auto; max-width: 100%; border-radius: 10px; }
+    .container { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 20px; 
+        padding: 10px; 
+        align-items: center; /* CENTER ALL MEMBER CARDS */
+    }
+    .member-card { 
+        width: 90%; /* adapt width */
+        margin-bottom: 20px;
+    }
+    .member-header { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 10px; 
+        align-items: center; /* CENTER content inside card */
+        text-align: center;
+    }
+    .member-card img { 
+        width: 100%; 
+        height: auto; 
+        max-width: 250px; 
+        border-radius: 10px; 
+    }
     .member-header div { padding: 10px 0; }
     .narnia-title { font-size: 0.9rem; }
     .member-card div p { font-size: 0.9rem; }
@@ -146,6 +166,7 @@
     #music-button { top: 10px; font-size: 0.8rem; padding: 8px 12px; }
     body, html { width: 100%; overflow-x: hidden; }
 }
+
 </style>
 </head>
 <body>
@@ -229,7 +250,7 @@
                    into leaders of character, courage, and wisdom.
                 </p>
                 <p><strong>Philosophy in Education:</strong><br>
-                   Education is about training the mind to be a fortress of reason.
+                   "Education is about training the mind to be a fortress of reason."
                 </p>
             </div>
         </div>
@@ -275,7 +296,7 @@
                    To be more confident and explore new opportunities
                 </p>
                 <p><strong>Philosophy in Education:</strong><br>
-                   I believe learning happens when we step out of our comfort zone.
+                   "I believe learning happens when we step out of our comfort zone."
                 </p>
             </div>
         </div>
@@ -298,7 +319,7 @@
                    Develop technical and personal skills while preparing for the future.
                 </p>
                 <p><strong>Philosophy in Education:</strong><br>
-                   Education is the key to personal growth and mastery of skills.
+                   "Education is the key to personal growth and mastery of skills."
                 </p>
             </div>
         </div>
@@ -330,7 +351,7 @@ document.querySelectorAll('.toggle-photo').forEach(img => {
 const popup = document.getElementById("instruction-popup");
 setInterval(() => {
     popup.style.display = "none";
-    setTimeout(() => { popup.style.display = "block"; }, 5000);
+    setTimeout(() => { popup.style.display = "block"; }, 3000);
 }, 10000);
 
 // Music button
