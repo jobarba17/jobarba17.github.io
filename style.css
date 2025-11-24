@@ -42,6 +42,9 @@ header {
     letter-spacing: 4px;
     color: #ffe27b;
     text-shadow: 5px 5px 15px rgba(0,0,0,1);
+    position: relative;
+    padding: 60px 20px 40px;
+    text-align: center;
 }
 
 /* ================= FULLSCREEN VIDEO ================= */
@@ -66,13 +69,6 @@ body::before {
     background: rgba(0,0,0,0.45);
     backdrop-filter: blur(1px);
     z-index: -1;
-}
-
-/* HEADER */
-header {
-    position: relative;
-    padding: 60px 20px 40px;
-    text-align: center;
 }
 
 /* ================= MOVING CLOUDS ================= */
@@ -251,7 +247,7 @@ h2 {
     background: linear-gradient(135deg, #4b1f57, #a362c3, #7a3fa0, #4b1f57);
 }
 
-/* ===================== UPGRADED ICE THEME ===================== */
+/* Upgraded ice theme */
 .narnia-ice:hover::before {
     opacity: 1;
     animation: cardGlow 6s linear infinite;
@@ -266,7 +262,7 @@ h2 {
     box-shadow: inset 0 0 40px rgba(0,10,20,0.6), 0 10px 40px rgba(0,0,0,0.6);
 }
 
-/* Text becomes readable during hover for ALL MEMBERS INCLUDING ICE */
+/* Text readability during hover */
 .member-card h2,
 .member-card p,
 .member-card strong,
@@ -292,68 +288,41 @@ h2 {
     opacity: 0;
 }
 
-.hero-board p {
-    color: gold;
-    font-size: 1.2rem;
-    font-weight: 500;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-}
-/* ================= HERO BOARD RESPONSIVE ================= */
+/* ================= HERO BOARD (UPGRADED) ================= */
 .hero-board {
-    width: 90%;
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 0 15px;
+    width: 100%;                 
+    display: flex;
+    flex-direction: column;
+    align-items: center;         
+    justify-content: center;     
+    text-align: center;          
+    margin: 40px 0;              
+    padding: 0 20px;             
 }
 
 .hero-board h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;             
     line-height: 1.2;
+    color: gold;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
 }
 
 .hero-board .hero-description {
     color: gold;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     line-height: 1.6;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
     text-align: center;
+    max-width: 900px;            
 }
 
-/* Mobile adaptation */
+/* Mobile adaptation for upgraded hero-board */
 @media only screen and (max-width: 768px) {
-    .hero-board {
-        width: 95%;
-        padding: 0 10px;
-        margin: 20px auto;
-    }
-
     .hero-board h1 {
-        font-size: 2rem;
-        line-height: 1.2;
+        font-size: 2rem;         
     }
 
     .hero-board .hero-description {
-        font-size: 1rem;
-        line-height: 1.4;
-        padding: 0 5px;
+        font-size: 1.1rem;       
+        max-width: 100%;
     }
 }
-.hero-board .hero-description {
-    color: gold;
-    font-size: 1.25rem;
-    line-height: 1.6;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-    text-align: center;
-}
-
-/* Mobile responsiveness */
-@media only screen and (max-width: 768px) {
-    .hero-board .hero-description {
-        font-size: 1rem;
-        line-height: 1.4;
-        padding: 0 10px;
-    }
-}
-
-
-
