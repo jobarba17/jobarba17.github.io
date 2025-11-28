@@ -55,24 +55,23 @@ header {
     position: relative;
 }
 
-/* SWITCHABLE PHOTO */
-.talent-photo {
+/* MEMBER PHOTO */
+.member-photo {
     display: block;
     width: 60%;
     max-width: 400px;
     margin: 20px auto;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(184,249,136,0.7); /* light green border/glow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 20px rgba(184,249,136,0.7);
     cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-.talent-photo:hover {
+.member-photo:hover {
     transform: scale(1.05);
     box-shadow: 0 0 35px rgba(184,249,136,1);
 }
 
-/* HEADINGS WITH GLOW */
+/* HEADINGS */
 h2 {
     font-family: 'Cinzel Decorative', serif;
     color: #b8f988;
@@ -81,20 +80,11 @@ h2 {
 }
 
 /* LIST ITEMS */
-ul {
-    margin-left: 20px;
-    padding-left: 0;
-    list-style-position: inside;
-    transition: text-shadow 0.3s ease-in-out;
-}
-
 ul li {
     margin-bottom: 10px;
     transition: text-shadow 0.3s ease-in-out;
     color: #b8f988;
 }
-
-/* LIGHT GREEN GLOW ON HOVER */
 ul:hover li {
     text-shadow:
         0 0 5px #b8f988,
@@ -113,7 +103,7 @@ ul:hover li {
     border-radius: 10px;
     text-decoration: none;
     font-family: 'Cinzel', serif;
-    margin-bottom: 20px;
+    margin: 10px 10px 20px 0;
     transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 .back-btn:hover {
@@ -121,7 +111,25 @@ ul:hover li {
     transform: scale(1.05);
 }
 
-/* INSTRUCTION POPUP */
+/* COLLAGE POPUP BELOW IMAGE */
+#collage-popup {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin: 10px auto 20px auto;
+    background: rgba(0,0,0,0.8);
+    color: #b8f988;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    box-shadow: 0 0 10px rgba(0,0,0,0.7);
+    pointer-events: none;
+    max-width: 250px;
+}
+
+/* HERO INSTRUCTION POPUP */
 #instruction-popup {
     position: fixed;
     bottom: 5px;
@@ -139,19 +147,40 @@ ul:hover li {
     pointer-events: none;
 }
 
+/* FULLSCREEN COLLAGE */
+.fullscreen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.fullscreen-overlay img {
+    max-width: 95%;
+    max-height: 95%;
+    border-radius: 15px;
+    box-shadow: 0 0 50px rgba(184,249,136,0.9);
+}
+
 /* MOBILE RESPONSIVE */
 @media only screen and (max-width: 768px) {
     .container {
         margin: 80px 15px 30px 15px;
         padding: 15px;
     }
-
     header {
         font-size: 1.5rem;
         padding: 15px;
     }
-
-    .talent-photo {
+    .member-photo {
         width: 80%;
     }
 }
@@ -169,9 +198,15 @@ ul:hover li {
 <div class="container">
 
     <!-- SWITCHABLE PHOTO -->
-    <img id="switchPhoto" src="../images/member4.jpg" class="talent-photo">
+    <img id="switchPhoto" src="../images/member4.jpg" class="member-photo">
 
+    <!-- BACK BUTTON -->
     <a href="../index.html" class="back-btn">← Back to Portfolio</a>
+
+    <!-- COLLAGE IMAGE -->
+    <img src="../images/Hobbies/member4.jpg" alt="Member 4 Collage" class="member-photo">
+    <div id="collage-popup">Click/Tap to view full screen</div>
+    <div style="height: 50px;"></div>
 
     <h2>Talent / Hobbies</h2>
     <ul>
@@ -180,11 +215,12 @@ ul:hover li {
     </ul>
 
 </div>
+    <div style="height: 50px;"></div>
 
-<!-- ALWAYS VISIBLE INSTRUCTION POPUP -->
+<!-- HERO INSTRUCTION POPUP -->
 <div id="instruction-popup">Click the Hero's image to revert back to Human</div>
 
-<!-- PHOTO SWITCH SCRIPT -->
+<!-- PHOTO SWITCH & COLLAGE SCRIPT -->
 <script>
 const photos = [
     "../images/member4.jpg",
@@ -192,17 +228,43 @@ const photos = [
 ];
 
 let index = 0;
-
 document.getElementById("switchPhoto").addEventListener("click", () => {
     index = (index + 1) % photos.length;
     document.getElementById("switchPhoto").src = photos[index];
 });
 
-// ================= POPUP HIDE/SHOW EVERY 5 SECONDS =================
+// HERO INSTRUCTION POPUP SHOW/HIDE
 const popup = document.getElementById("instruction-popup");
 setInterval(() => {
     popup.style.display = "none";
     setTimeout(() => { popup.style.display = "block"; }, 5000);
+}, 10000);
+
+// FULLSCREEN COLLAGE
+const collage = document.querySelectorAll('.container .member-photo')[1];
+const collagePopup = document.getElementById('collage-popup');
+
+const overlay = document.createElement('div');
+overlay.classList.add('fullscreen-overlay');
+const overlayImg = document.createElement('img');
+overlay.appendChild(overlayImg);
+document.body.appendChild(overlay);
+
+collage.addEventListener('click', () => {
+    overlayImg.src = collage.src;
+    overlay.style.opacity = '1';
+    overlay.style.display = 'flex';
+});
+
+overlay.addEventListener('click', () => {
+    overlay.style.opacity = '0';
+    setTimeout(() => { overlay.style.display = 'none'; }, 300);
+});
+
+// COLLAGE POPUP SHOW/HIDE
+setInterval(() => {
+    collagePopup.style.display = "none";
+    setTimeout(() => { collagePopup.style.display = "block"; }, 5000);
 }, 10000);
 </script>
 

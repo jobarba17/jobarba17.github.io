@@ -116,10 +116,10 @@ p {
         0 0 30px #f4d27a;
 }
 
-/* INSTRUCTION POPUP */
+/* HERO INSTRUCTION POPUP */
 #instruction-popup {
     position: fixed;
-    bottom: 20px;
+    bottom: 5px; /* very bottom */
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0,0,0,0.8);
@@ -132,6 +132,48 @@ p {
     box-shadow: 0 0 12px rgba(0,0,0,0.7);
     z-index: 9999;
     pointer-events: none;
+}
+
+/* COLLAGE INSTRUCTION BELOW COLLAGE */
+#collage-popup {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin: 10px auto 20px auto; /* spacing below collage */
+    background: rgba(0,0,0,0.8);
+    color: #ffd700;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    box-shadow: 0 0 10px rgba(0,0,0,0.7);
+    pointer-events: none;
+    max-width: 250px;
+}
+
+/* FULLSCREEN COLLAGE */
+.fullscreen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.fullscreen-overlay img {
+    max-width: 95%;
+    max-height: 95%;
+    border-radius: 15px;
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.9);
 }
 
 /* MOBILE RESPONSIVE */
@@ -159,7 +201,7 @@ p {
     <source src="../videos/background.mp4" type="video/mp4">
 </video>
 
-<header>John Alejandro Barba - Home & Contact</header>
+<header>John Alejandro Barba - Daily Communication</header>
 
 <div class="container">
 
@@ -168,21 +210,25 @@ p {
 
     <!-- NAV BUTTONS -->
     <a href="../index.html" class="back-btn">← Back to Portfolio</a>
-    <a href="mailto:jobarba@my.cspc.edu.ph" class="contact-btn">Email</a>
+    <a href="mailto:BSECE4CG1@gmail.com" class="contact-btn">Website Email</a>
+    <a href="mailto:jobarba@my.cspc.edu.ph" class="contact-btn">CSPC Email</a>
     <a href="https://www.facebook.com/john.alejandro.barba.2025" target="_blank" class="contact-btn">Facebook</a>
 
-    <h2>Home Address</h2>
+    <!-- DAILY COMMUNICATION COLLAGE (ADDED) -->
+    <img src="../images/dailycommunication/member1.jpg"
+         alt="Daily Communication Collage"
+         class="member-photo">
+    <!-- COLLAGE POPUP BELOW IMAGE -->
+    <div id="collage-popup">Click/Tap to view full screen</div>
+    <div style="height: 50px;"></div>
 
-    <p><strong>Barangay:</strong> San Antonio Poblacion</p>
-    <p><strong>Municipality/City:</strong> Nabua</p>
-    <p><strong>Province:</strong> Camarines Sur</p>
-    <p><strong>Contact Number:</strong> 09567558336</p>
     <h2>Daily Communication</h2>
-    <p>Rinconada | Tagalog | English</p>
+    <p>Language: Rinconada | Tagalog | English</p>
+    <div style="height: 50px;"></div>
 
 </div>
 
-<!-- ALWAYS VISIBLE INSTRUCTION POPUP -->
+<!-- HERO INSTRUCTION POPUP -->
 <div id="instruction-popup">Click the Hero's image to revert back to Human</div>
 
 <!-- PHOTO SWITCH SCRIPT -->
@@ -205,6 +251,36 @@ const popup = document.getElementById("instruction-popup");
 setInterval(() => {
     popup.style.display = "none";
     setTimeout(() => { popup.style.display = "block"; }, 5000);
+}, 10000);
+
+// ================= FULLSCREEN COLLAGE =================
+const collage = document.querySelectorAll('.container .member-photo')[1]; // second photo
+const collagePopup = document.getElementById('collage-popup');
+
+// Create overlay div
+const overlay = document.createElement('div');
+overlay.classList.add('fullscreen-overlay');
+const overlayImg = document.createElement('img');
+overlay.appendChild(overlayImg);
+document.body.appendChild(overlay);
+
+// Show overlay on click
+collage.addEventListener('click', () => {
+    overlayImg.src = collage.src;
+    overlay.style.opacity = '1';
+    overlay.style.display = 'flex';
+});
+
+// Hide overlay on click
+overlay.addEventListener('click', () => {
+    overlay.style.opacity = '0';
+    setTimeout(() => { overlay.style.display = 'none'; }, 300);
+});
+
+// COLLAGE POPUP SHOW/HIDE (like hero instruction)
+setInterval(() => {
+    collagePopup.style.display = "none";
+    setTimeout(() => { collagePopup.style.display = "block"; }, 5000);
 }, 10000);
 </script>
 

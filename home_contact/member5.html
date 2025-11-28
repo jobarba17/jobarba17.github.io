@@ -42,8 +42,6 @@ header {
     text-shadow: 0 0 10px #88cfff, 0 0 20px #b3f0ff, 0 0 30px #e0ffff;
     animation: headerGlow 2s linear infinite alternate;
 }
-
-/* HEADER GLOW ANIMATION */
 @keyframes headerGlow {
     0% { text-shadow: 0 0 5px #88cfff, 0 0 10px #b3f0ff, 0 0 15px #e0ffff; }
     50% { text-shadow: 0 0 15px #88cfff, 0 0 30px #b3f0ff, 0 0 45px #e0ffff; }
@@ -62,7 +60,7 @@ header {
     transition: transform 0.3s ease;
 }
 
-/* ALWAYS GLOWING PHOTO */
+/* MEMBER PHOTO */
 .member-photo {
     display: block;
     width: 60%;
@@ -97,14 +95,20 @@ header {
 }
 
 /* HEADINGS AND PARAGRAPHS */
-/* PARAGRAPHS */
+h2 {
+    font-family: 'Cinzel Decorative', serif;
+    color: #88cfff;
+    margin-bottom: 15px;
+    text-shadow: 0 0 8px #88cfff, 0 0 16px #b3f0ff;
+}
+
 p {
     margin-bottom: 15px;
     text-align: justify;
     transition: text-shadow 0.3s ease;
 }
 
-/* ANIMATE GLOW ON HOVER CONTAINER */
+/* GLOW ON HOVER */
 .container:hover h2, 
 .container:hover p {
     color: #b3f0ff;
@@ -116,7 +120,7 @@ p {
         0 0 25px #88cfff;
 }
 
-/* ALWAYS VISIBLE INSTRUCTION POPUP */
+/* HERO INSTRUCTION POPUP */
 #instruction-popup {
     position: fixed;
     bottom: 20px;
@@ -134,6 +138,50 @@ p {
     pointer-events: none;
 }
 
+/* COLLAGE POPUP BELOW COLLAGE */
+#collage-popup {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin: 10px auto 20px auto;
+    background: rgba(0,0,0,0.8);
+    color: #88cfff;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    text-shadow: 1px 1px 3px #88cfff;
+    box-shadow: 0 0 10px #88cfff;
+    pointer-events: none;
+    max-width: 250px;
+}
+
+/* FULLSCREEN COLLAGE */
+.fullscreen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.fullscreen-overlay img {
+    max-width: 95%;
+    max-height: 95%;
+    border-radius: 15px;
+    box-shadow:
+        0 0 20px #88cfff,
+        0 0 40px #b3f0ff,
+        0 0 60px #e0ffff; /* MATCH MEMBER 5 THEME */
+}
+
 /* MOBILE RESPONSIVE */
 @media only screen and (max-width: 768px) {
     .container { margin: 80px 15px 30px 15px; padding: 15px; }
@@ -149,34 +197,35 @@ p {
     <source src="../videos/background.mp4" type="video/mp4">
 </video>
 
-<header>Angeline Catangui - Home & Contact</header>
+<header>Angeline Catangui - Daily Communication</header>
 
 <div class="container">
 
-    <!-- PHOTO -->
+    <!-- SWITCHABLE HERO PHOTO -->
     <img id="switchPhoto" src="../images/member5.jpg" alt="Angeline Catangui" class="member-photo">
 
     <!-- NAV BUTTONS -->
     <a href="../index.html" class="back-btn">← Back to Portfolio</a>
-    <a href="mailto:ancatangui@my.cspc.edu.ph" class="contact-btn">Email</a>
+    <a href="mailto:BSECE4CG1@gmail.com" class="contact-btn">Website Email</a>
+    <a href="mailto:ancatangui@my.cspc.edu.ph" class="contact-btn">CSPC Email</a>
     <a href="https://www.facebook.com/share/1FZ4rZLVYw/" target="_blank" class="contact-btn">Facebook</a>
 
-    <h2>Home Address</h2>
-    <p><strong>Barangay:</strong> San Miguel</p>
-    <p><strong>Municipality/City:</strong> Iriga City</p>
-    <p><strong>Province:</strong> Camarines Sur</p>
-    <p><strong>Contact Number:</strong> 09278715124</p>
+    <!-- COLLAGE -->
+    <img src="../images/dailycommunication/member5.jpg" alt="Daily Communication Collage" class="member-photo">
+    <div id="collage-popup">Click/Tap to view full screen</div>
+    <div style="height: 50px;"></div>
 
     <h2>Daily Communication</h2>
-    <p>Tagalog | English</p>
+    <p>Languages: Tagalog | English</p>
+    <div style="height: 50px;"></div>
 
 </div>
 
-<!-- ALWAYS VISIBLE INSTRUCTION POPUP -->
+<!-- HERO INSTRUCTION POPUP -->
 <div id="instruction-popup">Click the Hero's image to revert back to Human</div>
 
 <script>
-// PHOTO TOGGLE
+// HERO PHOTO SWITCH
 const photos = ["../images/member5.jpg", "../images/member5_alt.jpg"];
 let index = 0;
 document.getElementById("switchPhoto").addEventListener("click", () => {
@@ -184,11 +233,37 @@ document.getElementById("switchPhoto").addEventListener("click", () => {
     document.getElementById("switchPhoto").src = photos[index];
 });
 
-// POPUP HIDE/SHOW EVERY 5 SECONDS
+// HERO POPUP SHOW/HIDE
 const popup = document.getElementById("instruction-popup");
 setInterval(() => {
     popup.style.display = "none";
     setTimeout(() => { popup.style.display = "block"; }, 5000);
+}, 10000);
+
+// FULLSCREEN COLLAGE
+const collage = document.querySelectorAll('.container .member-photo')[1]; // second image
+const collagePopup = document.getElementById('collage-popup');
+
+const overlay = document.createElement('div');
+overlay.classList.add('fullscreen-overlay');
+const overlayImg = document.createElement('img');
+overlay.appendChild(overlayImg);
+document.body.appendChild(overlay);
+
+collage.addEventListener('click', () => {
+    overlayImg.src = collage.src;
+    overlay.style.opacity = '1';
+    overlay.style.display = 'flex';
+});
+overlay.addEventListener('click', () => {
+    overlay.style.opacity = '0';
+    setTimeout(() => { overlay.style.display = 'none'; }, 300);
+});
+
+// COLLAGE POPUP SHOW/HIDE
+setInterval(() => {
+    collagePopup.style.display = "none";
+    setTimeout(() => { collagePopup.style.display = "block"; }, 5000);
 }, 10000);
 </script>
 

@@ -43,8 +43,6 @@ header {
     text-shadow: 0 0 10px #88cfff, 0 0 20px #b3f0ff, 0 0 30px #e0ffff;
     animation: headerGlow 2s linear infinite alternate;
 }
-
-/* HEADER GLOW ANIMATION */
 @keyframes headerGlow {
     0% { text-shadow: 0 0 5px #88cfff, 0 0 10px #b3f0ff, 0 0 15px #e0ffff; }
     50% { text-shadow: 0 0 15px #88cfff, 0 0 30px #b3f0ff, 0 0 45px #e0ffff; }
@@ -89,17 +87,12 @@ h2 {
 /* PARAGRAPHS */
 p {
     margin-bottom: 15px;
-    text-align: justify; /* Justified like Member 1 */
+    text-align: justify;
     transition: text-shadow 0.3s ease;
-    color: #b3f0ff; /* Ice/frost color */
+    color: #b3f0ff;
 }
-
-/* GLOW ON HOVER FOR ALL PARAGRAPHS */
 .container:hover p {
-    text-shadow:
-        0 0 5px #88cfff,
-        0 0 10px #b3f0ff,
-        0 0 15px #e0ffff;
+    text-shadow: 0 0 5px #88cfff, 0 0 10px #b3f0ff, 0 0 15px #e0ffff;
 }
 
 /* BACK BUTTON */
@@ -120,12 +113,8 @@ p {
     box-shadow: 0 0 10px #88cfff, 0 0 20px #b3f0ff, 0 0 30px #e0ffff;
 }
 
-/* INSTRUCTION POPUP */
-#instruction-popup {
-    position: fixed;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
+/* INSTRUCTION POPUPS */
+#instruction-popup, #collage-popup {
     background: rgba(0,0,0,0.8);
     color: #88cfff;
     padding: 12px 20px;
@@ -134,8 +123,50 @@ p {
     font-size: 1rem;
     text-shadow: 1px 1px 3px #88cfff;
     box-shadow: 0 0 12px #88cfff;
-    z-index: 9999;
     pointer-events: none;
+}
+#instruction-popup {
+    position: fixed;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+}
+#collage-popup {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin: 10px auto 20px auto;
+    font-size: 0.95rem;
+    max-width: 250px;
+}
+
+/* FULLSCREEN COLLAGE */
+.fullscreen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.fullscreen-overlay img {
+    max-width: 95%;
+    max-height: 95%;
+    border-radius: 15px;
+    box-shadow: 0 0 50px rgba(136,207,255,0.9);
+}
+
+/* COLLAGE CONTAINER */
+.collage-container {
+    margin-top: 30px;
 }
 
 /* MOBILE RESPONSIVE */
@@ -158,10 +189,17 @@ p {
 
 <div class="container">
 
-    <!-- SWITCHABLE PHOTO -->
+    <!-- HERO PHOTO -->
     <img id="switchPhoto" src="../images/member5.jpg" alt="Angeline Catangui" class="member-photo">
 
+    <!-- BACK BUTTON -->
     <a href="../index.html" class="back-btn">← Back to Portfolio</a>
+
+    <!-- COLLAGE -->
+    <div class="collage-container">
+        <img src="../images/ProfDev/member5.jpg" alt="Professional Develeopment Collage" class="member-photo">
+        <div id="collage-popup">Click/Tap to view full screen</div>
+    </div>
 
     <h2>Professional Development</h2>
 
@@ -178,11 +216,11 @@ p {
 
 </div>
 
-<!-- ALWAYS VISIBLE INSTRUCTION POPUP -->
+<!-- POPUPS -->
 <div id="instruction-popup">Click the Hero's image to revert back to Human</div>
 
+<!-- PHOTO SWITCH & COLLAGE SCRIPT -->
 <script>
-// PHOTO SWITCH
 const photos = ["../images/member5.jpg", "../images/member5_alt.jpg"];
 let index = 0;
 document.getElementById("switchPhoto").addEventListener("click", () => {
@@ -190,11 +228,38 @@ document.getElementById("switchPhoto").addEventListener("click", () => {
     document.getElementById("switchPhoto").src = photos[index];
 });
 
-// POPUP ALWAYS VISIBLE
+// HERO INSTRUCTION POPUP
 const popup = document.getElementById("instruction-popup");
 setInterval(() => {
     popup.style.display = "none";
-    setTimeout(() => popup.style.display = "block", 5000);
+    setTimeout(() => { popup.style.display = "block"; }, 5000);
+}, 10000);
+
+// FULLSCREEN COLLAGE
+const collage = document.querySelectorAll('.collage-container .member-photo')[0];
+const collagePopup = document.getElementById('collage-popup');
+
+const overlay = document.createElement('div');
+overlay.classList.add('fullscreen-overlay');
+const overlayImg = document.createElement('img');
+overlay.appendChild(overlayImg);
+document.body.appendChild(overlay);
+
+collage.addEventListener('click', () => {
+    overlayImg.src = collage.src;
+    overlay.style.opacity = '1';
+    overlay.style.display = 'flex';
+});
+
+overlay.addEventListener('click', () => {
+    overlay.style.opacity = '0';
+    setTimeout(() => { overlay.style.display = 'none'; }, 300);
+});
+
+// COLLAGE POPUP SHOW/HIDE
+setInterval(() => {
+    collagePopup.style.display = "none";
+    setTimeout(() => { collagePopup.style.display = "block"; }, 5000);
 }, 10000);
 </script>
 

@@ -9,7 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
-/* ================= GENERAL STYLES ================= */
 body {
     margin: 0;
     padding: 0;
@@ -23,13 +22,11 @@ body {
 /* FULLSCREEN BACKGROUND */
 #bg-video {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top:0; left:0;
+    width:100%; height:100%;
     object-fit: cover;
-    z-index: -1;
-    opacity: 0.5;
+    z-index:-1;
+    opacity:0.5;
 }
 
 /* HEADER */
@@ -39,7 +36,7 @@ header {
     text-align: center;
     font-family: 'Cinzel Decorative', serif;
     font-size: 2rem;
-    color: #d8a7ff;
+    color: #d8a7ff; /* Purple Theme */
     text-shadow: 0 0 12px #a362c3, 0 0 25px #caa6ff;
 }
 
@@ -50,36 +47,33 @@ header {
     padding: 20px;
     background: rgba(20,20,20,0.85);
     border-radius: 15px;
-    box-shadow: 0 0 25px rgba(163, 98, 195, 0.6);
+    box-shadow: 0 0 25px rgba(163,98,195,0.6);
     position: relative;
 }
 
 /* SWITCHABLE PHOTO */
-.talent-photo {
+.member-photo {
     display: block;
     width: 60%;
     max-width: 400px;
     margin: 20px auto;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(163, 98, 195, 0.8);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 20px rgba(163,98,195,0.8);
     cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.talent-photo:hover {
+.member-photo:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 35px rgba(202, 166, 255, 1);
+    box-shadow: 0 0 35px rgba(202,166,255,1);
 }
 
-/* HEADINGS WITH PURPLE GLOW */
+/* HEADINGS */
 h2 {
     font-family: 'Cinzel Decorative', serif;
     color: #d8a7ff;
     margin-bottom: 15px;
-    text-shadow:
-        0 0 10px #a362c3,
-        0 0 20px #caa6ff,
-        0 0 35px #a362c3;
+    text-shadow:0 0 10px #a362c3,0 0 20px #caa6ff,0 0 35px #a362c3;
 }
 
 /* LIST ITEMS */
@@ -87,21 +81,15 @@ ul {
     margin-left: 20px;
     padding-left: 0;
     list-style-position: inside;
-    transition: text-shadow 0.3s ease-in-out;
 }
 
 ul li {
     margin-bottom: 10px;
-    transition: text-shadow 0.3s ease-in-out;
 }
 
-/* PURPLE GLOW HOVER EFFECT ON LIST */
 ul:hover li {
-    text-shadow:
-        0 0 5px #caa6ff,
-        0 0 10px #a362c3,
-        0 0 20px #caa6ff;
-    color: #d8a7ff;
+    text-shadow:0 0 5px #caa6ff,0 0 10px #a362c3,0 0 20px #caa6ff;
+    color:#d8a7ff;
 }
 
 /* BACK BUTTON */
@@ -121,7 +109,7 @@ ul:hover li {
     transform: scale(1.05);
 }
 
-/* INSTRUCTION POPUP */
+/* HERO INSTRUCTION POPUP */
 #instruction-popup {
     position: fixed;
     bottom: 5px;
@@ -134,32 +122,61 @@ ul:hover li {
     font-family: 'Cinzel', serif;
     font-size: 1rem;
     text-shadow: 0 0 8px #a362c3;
-    box-shadow: 0 0 12px rgba(163, 98, 195, 0.7);
+    box-shadow: 0 0 12px rgba(163,98,195,0.7);
     z-index: 9999;
     pointer-events: none;
 }
 
-/* MOBILE RESPONSIVE */
+/* COLLAGE POPUP BELOW COLLAGE */
+#collage-popup {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin: 10px auto 20px auto;
+    background: rgba(0,0,0,0.8);
+    color: #d8a7ff;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    box-shadow: 0 0 10px rgba(0,0,0,0.7);
+    pointer-events: none;
+    max-width: 250px;
+}
+
+/* FULLSCREEN COLLAGE */
+.fullscreen-overlay {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+    cursor: pointer;
+    opacity:0;
+    transition: opacity 0.3s ease;
+}
+
+.fullscreen-overlay img {
+    max-width: 95%;
+    max-height: 95%;
+    border-radius: 15px;
+    box-shadow: 0 0 50px rgba(202,166,255,0.9);
+}
+
+/* MOBILE */
 @media only screen and (max-width: 768px) {
-    .container {
-        margin: 80px 15px 30px 15px;
-        padding: 15px;
-    }
-
-    header {
-        font-size: 1.5rem;
-        padding: 15px;
-    }
-
-    .talent-photo {
-        width: 80%;
-    }
+    .container { margin: 80px 15px 30px 15px; padding: 15px; }
+    header { font-size: 1.5rem; padding: 15px; }
+    .member-photo { width: 80%; }
 }
 </style>
 </head>
 <body>
 
-<!-- Background Video -->
 <video autoplay muted loop id="bg-video">
     <source src="../videos/background.mp4" type="video/mp4">
 </video>
@@ -169,9 +186,14 @@ ul:hover li {
 <div class="container">
 
     <!-- SWITCHABLE PHOTO -->
-    <img id="switchPhoto" src="../images/member6.jpg" class="talent-photo">
+    <img id="switchPhoto" src="../images/member6.jpg" class="member-photo">
 
     <a href="../index.html" class="back-btn">← Back to Portfolio</a>
+
+    <!-- COLLAGE -->
+    <img src="../images/Hobbies/member6.jpg" class="member-photo">
+    <div id="collage-popup">Click/Tap to view full screen</div>
+    <div style="height: 50px;"></div>
 
     <h2>Talent / Hobbies</h2>
     <ul>
@@ -180,33 +202,45 @@ ul:hover li {
         <li>Watching Reels</li>
         <li>Watching K-Drama</li>
     </ul>
-
 </div>
+    <div style="height: 50px;"></div>
 
-<!-- ALWAYS VISIBLE INSTRUCTION POPUP -->
 <div id="instruction-popup">Click the Hero's image to revert back to Human</div>
 
-<!-- PHOTO SWITCH SCRIPT -->
 <script>
-const photos = [
-    "../images/member6.jpg",
-    "../images/member6_alt.jpg"
-];
-
-let index = 0;
-
-document.getElementById("switchPhoto").addEventListener("click", () => {
-    index = (index + 1) % photos.length;
-    document.getElementById("switchPhoto").src = photos[index];
+// PHOTO SWITCH
+const photos = ["../images/member6.jpg","../images/member6_alt.jpg"];
+let index=0;
+document.getElementById("switchPhoto").addEventListener("click",()=>{
+    index=(index+1)%photos.length;
+    document.getElementById("switchPhoto").src=photos[index];
 });
 
-// Popup hide and show
-const popup = document.getElementById("instruction-popup");
-setInterval(() => {
-    popup.style.display = "none";
-    setTimeout(() => { popup.style.display = "block"; }, 5000);
-}, 10000);
-</script>
+// HERO POPUP SHOW/HIDE
+const popup=document.getElementById("instruction-popup");
+setInterval(()=>{popup.style.display="none";setTimeout(()=>{popup.style.display="block"},5000)},10000);
 
+// COLLAGE FULLSCREEN
+const collage=document.querySelectorAll('.container .member-photo')[1];
+const collagePopup=document.getElementById('collage-popup');
+const overlay=document.createElement('div');
+overlay.classList.add('fullscreen-overlay');
+const overlayImg=document.createElement('img');
+overlay.appendChild(overlayImg);
+document.body.appendChild(overlay);
+
+collage.addEventListener('click',()=>{
+    overlayImg.src=collage.src;
+    overlay.style.opacity='1';
+    overlay.style.display='flex';
+});
+
+overlay.addEventListener('click',()=>{
+    overlay.style.opacity='0';
+    setTimeout(()=>{overlay.style.display='none'},300);
+});
+
+setInterval(()=>{collagePopup.style.display="none";setTimeout(()=>{collagePopup.style.display="block"},5000)},10000);
+</script>
 </body>
 </html>
