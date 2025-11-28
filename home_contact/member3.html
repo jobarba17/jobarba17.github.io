@@ -219,7 +219,7 @@ ul li, .daily-comm {
     <div style="height: 50px;"></div>
 
     <h2>Daily Communication</h2>
-    <p class="daily-comm">Bikol | Tagalog | English</p>
+    <p class="daily-comm">Language: Bikol | Tagalog | English</p>
     <div style="height: 50px;"></div>
     <div style="height: 50px;"></div>
 
@@ -228,30 +228,49 @@ ul li, .daily-comm {
 <!-- HERO INSTRUCTION POPUP -->
 <div id="instruction-popup">Click the Hero's image to revert back to Human</div>
 
-<!-- PHOTO SWITCH & COLLAGE SCRIPT -->
 <script>
+// ====== HERO PHOTO SWITCH ======
 const photos = [
     "../images/member3.jpg",
     "../images/member3_alt.jpg"
 ];
+
 let index = 0;
-document.getElementById("switchPhoto").addEventListener("click", () => {
+const heroImage = document.getElementById("switchPhoto");
+
+heroImage.addEventListener("click", () => {
     index = (index + 1) % photos.length;
-    document.getElementById("switchPhoto").src = photos[index];
+    heroImage.src = photos[index];
 });
 
-// POPUP HIDE/SHOW EVERY 5 SECONDS
-const popup = document.getElementById("instruction-popup");
-setInterval(() => {
-    popup.style.display = "none";
-    setTimeout(() => { popup.style.display = "block"; }, 5000);
-}, 10000);
+// ====== POPUP ELEMENTS ======
+const heroPopup = document.getElementById("instruction-popup");
+const collagePopup = document.getElementById("collage-popup");
 
-// ================= FULLSCREEN COLLAGE =================
-const collage = document.querySelectorAll('.container .member-photo')[1]; // second photo
-const collagePopup = document.getElementById('collage-popup');
+// ====== FUNCTION: show popup for 5s then hide for 1 min ======
+function cyclePopup(popup) {
+    // Show popup
+    popup.style.display = "block";
 
-// Create overlay div
+    // Hide after 5 seconds
+    setTimeout(() => {
+        popup.style.display = "none";
+
+        // Wait 1 minute, then show again
+        setTimeout(() => {
+            cyclePopup(popup);
+        }, 60000);
+    }, 5000);
+}
+
+// Start cycling both popups
+cyclePopup(heroPopup);
+cyclePopup(collagePopup);
+
+// ====== FULLSCREEN COLLAGE ======
+const collage = document.querySelectorAll('.container .member-photo')[1]; 
+
+// Create overlay
 const overlay = document.createElement('div');
 overlay.classList.add('fullscreen-overlay');
 const overlayImg = document.createElement('img');
@@ -263,20 +282,21 @@ collage.addEventListener('click', () => {
     overlayImg.src = collage.src;
     overlay.style.opacity = '1';
     overlay.style.display = 'flex';
+
+    // Hide both popups immediately
+    heroPopup.style.display = "none";
+    collagePopup.style.display = "none";
 });
 
 // Hide overlay on click
 overlay.addEventListener('click', () => {
     overlay.style.opacity = '0';
-    setTimeout(() => { overlay.style.display = 'none'; }, 300);
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 300);
 });
-
-// COLLAGE POPUP SHOW/HIDE (like hero instruction)
-setInterval(() => {
-    collagePopup.style.display = "none";
-    setTimeout(() => { collagePopup.style.display = "block"; }, 20000);
-}, 250000);
 </script>
+
 
 </body>
 </html>

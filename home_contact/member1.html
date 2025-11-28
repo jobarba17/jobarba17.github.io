@@ -119,7 +119,7 @@ p {
 /* HERO INSTRUCTION POPUP */
 #instruction-popup {
     position: fixed;
-    bottom: 5px; /* very bottom */
+    bottom: 5px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0,0,0,0.8);
@@ -139,7 +139,7 @@ p {
     position: relative;
     display: block;
     text-align: center;
-    margin: 10px auto 20px auto; /* spacing below collage */
+    margin: 10px auto 20px auto;
     background: rgba(0,0,0,0.8);
     color: #ffd700;
     padding: 8px 15px;
@@ -214,11 +214,8 @@ p {
     <a href="mailto:jobarba@my.cspc.edu.ph" class="contact-btn">CSPC Email</a>
     <a href="https://www.facebook.com/john.alejandro.barba.2025" target="_blank" class="contact-btn">Facebook</a>
 
-    <!-- DAILY COMMUNICATION COLLAGE (ADDED) -->
-    <img src="../images/dailycommunication/member1.jpg"
-         alt="Daily Communication Collage"
-         class="member-photo">
-    <!-- COLLAGE POPUP BELOW IMAGE -->
+    <!-- DAILY COMMUNICATION COLLAGE -->
+    <img src="../images/dailycommunication/member1.jpg" alt="Daily Communication Collage" class="member-photo">
     <div id="collage-popup">Click/Tap to view full screen</div>
     <div style="height: 50px;"></div>
 
@@ -232,57 +229,58 @@ p {
 <!-- HERO INSTRUCTION POPUP -->
 <div id="instruction-popup">Click the Hero's image to revert back to Human</div>
 
-<!-- PHOTO SWITCH SCRIPT -->
 <script>
-const photos = [
-    "../images/member1.jpg",
-    "../images/member1_alt.jpg"
-];
-
+// ====== HERO PHOTO SWITCH ======
+const photos = ["../images/member1.jpg", "../images/member1_alt.jpg"];
 let index = 0;
+const heroImage = document.getElementById("switchPhoto");
 
-document.getElementById("switchPhoto").addEventListener("click", () => {
+heroImage.addEventListener("click", () => {
     index = (index + 1) % photos.length;
-    document.getElementById("switchPhoto").src = photos[index];
+    heroImage.src = photos[index];
 });
 
-// ================= POPUP HIDE/SHOW EVERY 5 SECONDS =================
-const popup = document.getElementById("instruction-popup");
+// ====== POPUP ELEMENTS ======
+const heroPopup = document.getElementById("instruction-popup");
+const collagePopup = document.getElementById("collage-popup");
 
-setInterval(() => {
-    popup.style.display = "none";
-    setTimeout(() => { popup.style.display = "block"; }, 5000);
-}, 10000);
+// ====== FUNCTION: show for 5s, hide for 1 min ======
+function cyclePopup(popup) {
+    popup.style.display = "block"; // show for 5s
+    setTimeout(() => {
+        popup.style.display = "none"; // hide for 60s
+        setTimeout(() => cyclePopup(popup), 60000);
+    }, 5000);
+}
 
-// ================= FULLSCREEN COLLAGE =================
-const collage = document.querySelectorAll('.container .member-photo')[1]; // second photo
-const collagePopup = document.getElementById('collage-popup');
+// Start popup cycles
+cyclePopup(heroPopup);
+cyclePopup(collagePopup);
 
-// Create overlay div
+// ====== FULLSCREEN COLLAGE ======
+const collage = document.querySelectorAll('.container .member-photo')[1];
+
+// Create overlay
 const overlay = document.createElement('div');
 overlay.classList.add('fullscreen-overlay');
 const overlayImg = document.createElement('img');
 overlay.appendChild(overlayImg);
 document.body.appendChild(overlay);
 
-// Show overlay on click
+// Show overlay
 collage.addEventListener('click', () => {
     overlayImg.src = collage.src;
     overlay.style.opacity = '1';
     overlay.style.display = 'flex';
+    heroPopup.style.display = "none";
+    collagePopup.style.display = "none";
 });
 
-// Hide overlay on click
+// Hide overlay
 overlay.addEventListener('click', () => {
     overlay.style.opacity = '0';
-    setTimeout(() => { overlay.style.display = 'none'; }, 300);
+    setTimeout(() => overlay.style.display = 'none', 300);
 });
-
-// COLLAGE POPUP SHOW/HIDE (like hero instruction)
-setInterval(() => {
-    collagePopup.style.display = "none";
-    setTimeout(() => { collagePopup.style.display = "block"; }, 20000);
-}, 250000);
 </script>
 
 </body>
